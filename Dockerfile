@@ -1,4 +1,11 @@
-# ...
+# Base docker image
+FROM python:3.8-slim
+
+# Set the working directory to the location of the dashboard
+WORKDIR /demo_gtxpro
+
+# Copy the current directory contents into the container
+COPY . .
 
 # Install dependencies
 RUN apt-get update && \
@@ -16,4 +23,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Set the working directory to the location of the dashboard script
-# ...
+WORKDIR /demo_gtxpro/src
+
+# Specify the port on which the app is listening
+EXPOSE 8050
+
+# Run the application
+CMD ["python", "000 GTPro master PROD.py"]
