@@ -12,6 +12,13 @@ FROM python:3.8-slim
 # Set the working directory
 WORKDIR /demo_gtxpro
 
+
+# Create a virtual environment
+RUN python -m venv /app/.venv
+
+# Activate the virtual environment
+ENV PATH="/app/.venv/bin:$PATH"
+
 # Update and install dependencies
 RUN apt-get update && \
     apt-get upgrade -y && \
