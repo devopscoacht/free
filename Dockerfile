@@ -1,23 +1,23 @@
-# Base docker image
-FROM python:3.8-slim
 
-# Set the working directory to the location of the dashboard
-WORKDIR /demo_gtxpro
-
-# Copy the current directory contents into the container
-COPY . .
-# Base docker image
 FROM python:3.8-slim
 
 # Set the working directory
-WORKDIR /demo_gtxpro
+WORKDIR /free
+
+
+# Create a virtual environment
+RUN python -m venv /app/.venv
 
 
 # Create a virtual environment
 RUN python -m venv /app/.venv
 
 # Activate the virtual environment
-ENV PATH="/app/.venv/bin:$PATH"
+ENV PATH="/app/.venv/bin:${PATH}"
+
+# Copy the requirements file into the container
+COPY requirements.txt .
+
 
 # Update and install dependencies
 RUN apt-get update && \
